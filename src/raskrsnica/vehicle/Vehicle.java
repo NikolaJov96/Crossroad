@@ -6,7 +6,6 @@
 package raskrsnica.vehicle;
 
 import java.util.Random;
-import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.image.Image;
@@ -30,6 +29,19 @@ public abstract class Vehicle extends Group {
     protected final PhongMaterial ACC_MAT = new PhongMaterial(Color.RED.darker().darker().darker());
     protected final PhongMaterial DEC_MAT = new PhongMaterial(Color.RED.brighter().brighter().brighter());
     protected final Image CLS = new Image("cls.bmp");
+    protected float[] texCoords = 
+    {
+        0.0f, 0.5f, // black
+        0.1f, 0.5f, // white
+        0.2f, 0.5f, // window
+        0.3f, 0.5f, // red
+        0.4f, 0.5f, // green
+        0.5f, 0.5f, // blue
+        0.6f, 0.5f, // yellow
+        0.7f, 0.5f, // brown
+        0.8f, 0.5f, // orange
+        1.9f, 0.5f  // gray
+    };
     protected final int WINDOW_CLR = 2;
     
     protected DIRECTION dir;

@@ -23,7 +23,7 @@ import raskrsnica.Raskrsnica;
  *
  * @author jovan
  */
-public class Car1 extends Vehicle {
+public class Car2 extends Vehicle {
     
     private static final float SCALE = 4.0f;
 
@@ -31,18 +31,19 @@ public class Car1 extends Vehicle {
     private static final float X2 = -5.0f;
     private static final float X3 = -4.0f;
     private static final float X4 = -3.0f;
-    private static final float X5 = 2.0f;
+    private static final float X5 = -2.0f;
     private static final float X6 = 3.0f;
     private static final float X7 = 5.0f;
     private static final float X8 = 6.0f;
+    private static final float X9 = 0.0f;
     
     private static final float Y1 = -2.5f;
     private static final float Y2 = -2.0f;
     
     private static final float Z1 = -1.0f;
     private static final float Z2 = -2.0f;
-    private static final float Z3 = -3.0f;
-    private static final float Z4 = -5.0f;
+    private static final float Z3 = -2.8f;
+    private static final float Z4 = -4.0f;
     
     private static final float WX1 = -4.0f / SCALE;
     private static final float WX2 = 4.0f / SCALE;
@@ -50,7 +51,7 @@ public class Car1 extends Vehicle {
     private static final float WY2 = 2.0f / SCALE;
     private static final float WZ = -1.0f / SCALE;
     
-    public Car1(Cns.DIRECTION dir, Raskrsnica raskrsnica) {
+    public Car2(Cns.DIRECTION dir, Raskrsnica raskrsnica) {
         super(dir, raskrsnica);
         int rc = 3 + (new Random()).nextInt(7);
         
@@ -60,14 +61,14 @@ public class Car1 extends Vehicle {
         Collections.addAll(pointsList, X1, Y1, Z3);
         Collections.addAll(pointsList, X2, Y1, Z1);
         Collections.addAll(pointsList, X2, Y1, Z2);
-        Collections.addAll(pointsList, X3, Y1, Z3);
+        Collections.addAll(pointsList, X1, Y1, Z3);
         Collections.addAll(pointsList, X4, Y1, Z1);
         Collections.addAll(pointsList, X4, Y1, Z2);
-        Collections.addAll(pointsList, X4, Y2, Z4);
+        Collections.addAll(pointsList, X2, Y2, Z4);
         Collections.addAll(pointsList, X5, Y2, Z4);
         Collections.addAll(pointsList, X6, Y1, Z1);
         Collections.addAll(pointsList, X6, Y1, Z2);
-        Collections.addAll(pointsList, X6, Y1, Z3);
+        Collections.addAll(pointsList, X9, Y1, Z3);
         Collections.addAll(pointsList, X7, Y1, Z1);
         Collections.addAll(pointsList, X7, Y1, Z2);
         Collections.addAll(pointsList, X8, Y1, Z1);
@@ -214,16 +215,16 @@ public class Car1 extends Vehicle {
         w4.setTranslateY(WY2);
         w4.setTranslateZ(WZ);
         
-        breakLight1 = new Box(D, 1 / SCALE, 1 / SCALE);
+        breakLight1 = new Box(D, Math.abs(Y1) / SCALE, 0.5 / SCALE);
         breakLight1.setTranslateX(X1 / SCALE);
-        breakLight1.setTranslateY(Y2 / SCALE);
-        breakLight1.setTranslateZ(-2.5f / SCALE);
+        breakLight1.setTranslateY(Y1 / 2 / SCALE);
+        breakLight1.setTranslateZ((Z3 + 0.25) / SCALE);
         breakLight1.setMaterial(ACC_MAT);
         
-        breakLight2 = new Box(D, 1 / SCALE, 1 / SCALE);
+        breakLight2 = new Box(D, Math.abs(Y1) / SCALE, 0.5 / SCALE);
         breakLight2.setTranslateX(X1 / SCALE);
-        breakLight2.setTranslateY(-Y2 / SCALE);
-        breakLight2.setTranslateZ(-2.5f / SCALE);
+        breakLight2.setTranslateY(-Y1 / 2 / SCALE);
+        breakLight2.setTranslateZ((Z3 + 0.25) / SCALE);
         breakLight2.setMaterial(ACC_MAT);
         
         getChildren().addAll(meshView, meshView1, w1, w2, w3, w4, breakLight1, breakLight2);
@@ -231,10 +232,10 @@ public class Car1 extends Vehicle {
     }
 
     @Override
-    protected double getMaxSpd() { return 0.1; }
+    protected double getMaxSpd() { return 0.2; }
 
     @Override
-    protected double getAccelRate() { return 0.001; }
+    protected double getAccelRate() { return 0.002; }
 
     @Override
     protected double getLen() { return 3; }

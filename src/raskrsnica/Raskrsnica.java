@@ -13,12 +13,9 @@ import java.util.Map;
 import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.EventType;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Box;
 import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -31,8 +28,8 @@ import raskrsnica.vehicle.*;
  */
 public class Raskrsnica extends Application {
     
-    private CameraManager cameraManager = new CameraManager();
-    private Sorrounding sorrounding = new Sorrounding();
+    private final CameraManager cameraManager = new CameraManager();
+    private final Sorrounding sorrounding = new Sorrounding();
     Group root = new Group();
     Scene scene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT, true);
     Random rnd = new Random();
@@ -42,12 +39,12 @@ public class Raskrsnica extends Application {
     private boolean leftDown = false;
     private boolean rightDown = false;
     
-    private Map<DIRECTION, List<Vehicle>> vehicles = new HashMap();
+    private final Map<DIRECTION, List<Vehicle>> vehicles = new HashMap();
     {
-        vehicles.put(DIRECTION.UD, new ArrayList<Vehicle>());
-        vehicles.put(DIRECTION.DU, new ArrayList<Vehicle>());
-        vehicles.put(DIRECTION.LR, new ArrayList<Vehicle>());
-        vehicles.put(DIRECTION.RL, new ArrayList<Vehicle>());
+        vehicles.put(DIRECTION.UD, new ArrayList());
+        vehicles.put(DIRECTION.DU, new ArrayList());
+        vehicles.put(DIRECTION.LR, new ArrayList());
+        vehicles.put(DIRECTION.RL, new ArrayList());
     }
     
     @Override
@@ -138,7 +135,7 @@ public class Raskrsnica extends Application {
                 }
                 
                 double dt = (double)(now - lastTimeStep) * DT_COEF;
-                for (List<Vehicle> vehs : vehicles.values()) {
+                vehicles.values().forEach((vehs) -> {
                     Vehicle inFront = null;
                     for (int i = 0; i < vehs.size();) {
                         Vehicle veh = vehs.get(i);
@@ -158,7 +155,7 @@ public class Raskrsnica extends Application {
                             i++;
                         }
                     }
-                }
+                });
                 
                 lastTimeStep = now;
             }
@@ -177,13 +174,13 @@ public class Raskrsnica extends Application {
             DIRECTION dir = DIRECTION.values()[pick];
             if (vehicles.get(dir).isEmpty() ||
                     enoughDist(vehicles.get(dir).get(vehicles.get(dir).size() - 1), dir)) {
-                int vehicleType = rnd.nextInt(1); // ? 6
+                int vehicleType = rnd.nextInt(4); // ? 6
                 Vehicle veh = null;
                 switch(vehicleType) {
                     case 0: veh = (Vehicle) new Car1(dir, this); break;
-                    case 1: break;
-                    case 2: break;
-                    case 3: break;
+                    case 1: veh = (Vehicle) new Car2(dir, this); break;
+                    case 2: veh = (Vehicle) new Car3(dir, this); break;
+                    case 3: veh = (Vehicle) new Bus(dir, this); break;
                     case 4: break;
                     case 5: break;
                 }

@@ -6,8 +6,6 @@
 package raskrsnica;
 
 import raskrsnica.vehicle.Vehicle;
-import javafx.geometry.Point3D;
-import javafx.scene.Camera;
 import javafx.scene.PerspectiveCamera;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
@@ -19,18 +17,15 @@ import static raskrsnica.Cns.*;
  */
 public class CameraManager {
     
-    private PerspectiveCamera topDownCam = new PerspectiveCamera(true);
-    private PerspectiveCamera centerCam = new PerspectiveCamera(true);
+    private final PerspectiveCamera topDownCam = new PerspectiveCamera(true);
+    private final PerspectiveCamera centerCam = new PerspectiveCamera(true);
     private Vehicle followVeh = null;
     
     private enum SELECTED { TOP_DOWN, CENTER, FOLLOW };
     private SELECTED selected = SELECTED.TOP_DOWN;
     
-    private Rotate centerHor = new Rotate(0, Rotate.Z_AXIS);
-    private Rotate centerVert = new Rotate(45, Rotate.X_AXIS);
-    
-    private Translate translate = new Translate(0, 0, 0);
-    private Rotate rotate = new Rotate(0, Rotate.X_AXIS);
+    private final Rotate centerHor = new Rotate(0, Rotate.Z_AXIS);
+    private final Rotate centerVert = new Rotate(45, Rotate.X_AXIS);
     
     public CameraManager() {
         
@@ -75,42 +70,48 @@ public class CameraManager {
     }
 
     void goDown() {
-        if (selected == SELECTED.TOP_DOWN) {
-            topDownCam.setTranslateZ(topDownCam.getTranslateZ() + CAM_UP_DOWN_STEP);
-            if (topDownCam.getTranslateZ() > -CAM_MIN_HEIGHT) {
-                topDownCam.setTranslateZ(-CAM_MIN_HEIGHT);
-            }
-        } else if (selected == SELECTED.CENTER) {
-            centerVert.setAngle(centerVert.getAngle() - CAM_LEFT_RIGHT_STEP);
-            if (centerVert.getAngle() < 15) {
-                centerVert.setAngle(15);
-            }
-        } else if (selected == SELECTED.FOLLOW) {
-            Rotate r = followVeh.getCamVert();
-            r.setAngle(r.getAngle() - CAM_LEFT_RIGHT_STEP);
-            if (r.getAngle() < 15) {
-                r.setAngle(15);
-            }
+        if (selected != null) switch (selected) {
+            case TOP_DOWN:
+                topDownCam.setTranslateZ(topDownCam.getTranslateZ() + CAM_UP_DOWN_STEP);
+                if (topDownCam.getTranslateZ() > -CAM_MIN_HEIGHT) {
+                    topDownCam.setTranslateZ(-CAM_MIN_HEIGHT);
+                }   break;
+            case CENTER:
+                centerVert.setAngle(centerVert.getAngle() - CAM_LEFT_RIGHT_STEP);
+                if (centerVert.getAngle() < 15) {
+                    centerVert.setAngle(15);
+                }   break;
+            case FOLLOW:
+                Rotate r = followVeh.getCamVert();
+                r.setAngle(r.getAngle() - CAM_LEFT_RIGHT_STEP);
+                if (r.getAngle() < 15) {
+                    r.setAngle(15);
+                }   break;
+            default:
+                break;
         }
     }
 
     void goUp() {
-        if (selected == SELECTED.TOP_DOWN) {
-            topDownCam.setTranslateZ(topDownCam.getTranslateZ() - CAM_UP_DOWN_STEP);
-            if (topDownCam.getTranslateZ() < -CAM_MAX_HEIGHT) {
-                topDownCam.setTranslateZ(-CAM_MAX_HEIGHT);
-            }
-        } else if (selected == SELECTED.CENTER) {
-            centerVert.setAngle(centerVert.getAngle() + CAM_LEFT_RIGHT_STEP);
-            if (centerVert.getAngle() > 90) {
-                centerVert.setAngle(90);
-            }
-        } else if (selected == SELECTED.FOLLOW) {
-            Rotate r = followVeh.getCamVert();
-            r.setAngle(r.getAngle() + CAM_LEFT_RIGHT_STEP);
-            if (r.getAngle() > 90) {
-                r.setAngle(90);
-            }
+        if (selected != null) switch (selected) {
+            case TOP_DOWN:
+                topDownCam.setTranslateZ(topDownCam.getTranslateZ() - CAM_UP_DOWN_STEP);
+                if (topDownCam.getTranslateZ() < -CAM_MAX_HEIGHT) {
+                    topDownCam.setTranslateZ(-CAM_MAX_HEIGHT);
+                }   break;
+            case CENTER:
+                centerVert.setAngle(centerVert.getAngle() + CAM_LEFT_RIGHT_STEP);
+                if (centerVert.getAngle() > 90) {
+                    centerVert.setAngle(90);
+                }   break;
+            case FOLLOW:
+                Rotate r = followVeh.getCamVert();
+                r.setAngle(r.getAngle() + CAM_LEFT_RIGHT_STEP);
+                if (r.getAngle() > 90) {
+                    r.setAngle(90);
+                }   break;
+            default:
+                break;
         }
     }
     
