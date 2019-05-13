@@ -6,11 +6,14 @@
 package raskrsnica;
 
 import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.shape.Cylinder;
 import javafx.scene.shape.Sphere;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import static raskrsnica.Cns.*;
 
@@ -28,7 +31,6 @@ public abstract class ObjectBuilder {
     private static final PhongMaterial bM = new PhongMaterial(Color.BLACK);
     private static Cylinder cy;
     private static Box bo;
-    private static Sphere sp;
     
     private static final double SEM_POST_R = 0.1;
     private static final double SEM_POST_H = 2;
@@ -113,28 +115,33 @@ public abstract class ObjectBuilder {
         cy.setMaterial(postM);
         stop.getChildren().add(cy);
         
-        cy = new Cylinder(STOP_R, D, 6);
+        cy = new Cylinder(STOP_R, D, 8);
         cy.setTranslateY(-STOP_POST_H);
         cy.setTranslateZ(D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
         cy.setMaterial(backM);
+        cy.getTransforms().add(new Rotate(90 / 4, Rotate.Y_AXIS));
         stop.getChildren().add(cy);
         
-        cy = new Cylinder(STOP_R, D, 6);
+        cy = new Cylinder(STOP_R, D, 8);
         cy.setTranslateY(-STOP_POST_H);
         cy.setTranslateZ(-D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
         cy.setMaterial(wM);
+        cy.getTransforms().add(new Rotate(90 / 4, Rotate.Y_AXIS));
         stop.getChildren().add(cy);
         
-        cy = new Cylinder(STOP_R * 0.8, D * 2, 6);
+        cy = new Cylinder(STOP_R * 0.8, D * 2, 8);
         cy.setTranslateY(-STOP_POST_H);
         cy.setTranslateZ(-D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
-        cy.setMaterial(rM);
+        PhongMaterial sM = new PhongMaterial();
+        sM.setDiffuseMap(new Image("stop.bmp"));
+        cy.setMaterial(sM);
+        cy.getTransforms().add(new Rotate(90 / 4, Rotate.Y_AXIS));
         stop.getChildren().add(cy);
         
         stop.getTransforms().add(new Rotate(90, Rotate.X_AXIS));
@@ -206,7 +213,9 @@ public abstract class ObjectBuilder {
         cy.setTranslateZ(-D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
-        cy.setMaterial(wM);
+        PhongMaterial sM = new PhongMaterial();
+        sM.setDiffuseMap(new Image("speed.bmp"));
+        cy.setMaterial(sM);
         speed.getChildren().add(cy);
         
         speed.getTransforms().addAll(

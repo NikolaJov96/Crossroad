@@ -99,8 +99,8 @@ public abstract class Vehicle extends Group {
         stoppingDist = (getMaxSpd() / getAccelRate()) * getMaxSpd();
         
         cam = CameraManager.createFollowCam();
-        cam.setTranslateX(-getLen() * 1.5);
-        cam.setTranslateZ(-3);
+        cam.setTranslateX(-4 - getLen() / 3);
+        cam.setTranslateZ(-2 - getLen() / 3);
         cam.getTransforms().addAll(camHor, camVert);
         getChildren().add(cam);
         

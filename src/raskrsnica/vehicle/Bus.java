@@ -205,7 +205,7 @@ public class Bus extends Vehicle {
     protected double getAccelRate() { return 0.001; }
 
     @Override
-    protected double getLen() { return 5; }
+    protected double getLen() { return 6; }
 
     private void addFace(ArrayList<Integer> facesChrList, int id1, int id2, int oneSidePoints) {
         Collections.addAll(facesChrList, id1, id2, id1 + oneSidePoints);
