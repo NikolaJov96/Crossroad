@@ -174,15 +174,15 @@ public class Raskrsnica extends Application {
             DIRECTION dir = DIRECTION.values()[pick];
             if (vehicles.get(dir).isEmpty() ||
                     enoughDist(vehicles.get(dir).get(vehicles.get(dir).size() - 1), dir)) {
-                int vehicleType = rnd.nextInt(4); // ? 6
+                int vehicleType = rnd.nextInt(6);
                 Vehicle veh = null;
                 switch(vehicleType) {
                     case 0: veh = (Vehicle) new Car1(dir, this); break;
                     case 1: veh = (Vehicle) new Car2(dir, this); break;
                     case 2: veh = (Vehicle) new Car3(dir, this); break;
                     case 3: veh = (Vehicle) new Bus(dir, this); break;
-                    case 4: break;
-                    case 5: break;
+                    case 4: veh = (Vehicle) new Truck(dir, this); break;
+                    case 5: veh = (Vehicle) new TrailerTruck(dir, this); break;
                 }
                 vehicles.get(dir).add(veh);
                 root.getChildren().add(veh);

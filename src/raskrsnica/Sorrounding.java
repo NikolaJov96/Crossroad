@@ -129,7 +129,7 @@ class Sorrounding extends Group {
                 Group sign = null;
                 if (i == 0) { sign = ObjectBuilder.getStop(); }
                 else { sign = ObjectBuilder.getGo(); }
-                sign.setTranslateX(LANE_WIDTH + SIDE_STRIPE_WID);
+                sign.setTranslateX(LANE_WIDTH + SIDEWALK_WIDTH / 2);
                 sign.setTranslateY(SIDE_STRIPE_LEN / 2 + SIDE_STRIPE_WID);
                 stripeArr.getChildren().add(sign);
                 // speed sign

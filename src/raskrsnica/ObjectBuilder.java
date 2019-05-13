@@ -115,7 +115,7 @@ public abstract class ObjectBuilder {
         
         cy = new Cylinder(STOP_R, D, 6);
         cy.setTranslateY(-STOP_POST_H);
-        cy.setTranslateZ(D);
+        cy.setTranslateZ(D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
         cy.setMaterial(backM);
@@ -123,15 +123,15 @@ public abstract class ObjectBuilder {
         
         cy = new Cylinder(STOP_R, D, 6);
         cy.setTranslateY(-STOP_POST_H);
-        cy.setTranslateZ(-D);
+        cy.setTranslateZ(-D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
         cy.setMaterial(wM);
         stop.getChildren().add(cy);
         
-        cy = new Cylinder(STOP_R * 0.8, D, 6);
+        cy = new Cylinder(STOP_R * 0.8, D * 2, 6);
         cy.setTranslateY(-STOP_POST_H);
-        cy.setTranslateZ(-D);
+        cy.setTranslateZ(-D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
         cy.setMaterial(rM);
@@ -151,7 +151,7 @@ public abstract class ObjectBuilder {
         
         cy = new Cylinder(STOP_R, D, 4);
         cy.setTranslateY(-STOP_POST_H);
-        cy.setTranslateZ(D);
+        cy.setTranslateZ(D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
         cy.setMaterial(backM);
@@ -159,15 +159,15 @@ public abstract class ObjectBuilder {
         
         cy = new Cylinder(STOP_R, D, 4);
         cy.setTranslateY(-STOP_POST_H);
-        cy.setTranslateZ(-D);
+        cy.setTranslateZ(-D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
         cy.setMaterial(wM);
         stop.getChildren().add(cy);
         
-        cy = new Cylinder(STOP_R * 0.8, D, 4);
+        cy = new Cylinder(STOP_R * 0.8, D * 2, 4);
         cy.setTranslateY(-STOP_POST_H);
-        cy.setTranslateZ(-D);
+        cy.setTranslateZ(-D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
         cy.setMaterial(yM);
@@ -187,7 +187,7 @@ public abstract class ObjectBuilder {
         
         cy = new Cylinder(STOP_R, D);
         cy.setTranslateY(-STOP_POST_H);
-        cy.setTranslateZ(D);
+        cy.setTranslateZ(D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
         cy.setMaterial(backM);
@@ -195,15 +195,15 @@ public abstract class ObjectBuilder {
         
         cy = new Cylinder(STOP_R, D);
         cy.setTranslateY(-STOP_POST_H);
-        cy.setTranslateZ(-D);
+        cy.setTranslateZ(-D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
         cy.setMaterial(rM);
         speed.getChildren().add(cy);
         
-        cy = new Cylinder(STOP_R * 0.8, D);
+        cy = new Cylinder(STOP_R * 0.8, D * 2);
         cy.setTranslateY(-STOP_POST_H);
-        cy.setTranslateZ(-D);
+        cy.setTranslateZ(-D - STOP_POST_R);
         cy.setRotate(90);
         cy.setRotationAxis(Rotate.X_AXIS);
         cy.setMaterial(wM);

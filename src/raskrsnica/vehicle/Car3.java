@@ -188,32 +188,14 @@ public class Car3 extends Vehicle {
         MeshView meshView1 = new MeshView(mesh);
         PhongMaterial pm1 = new PhongMaterial();
         pm1.setDiffuseMap(CLS);
-        pm1.setSpecularPower(150);
-        //pm1.setSpecularPower(100);
         meshView1.setMaterial(pm1);
         meshView1.setDrawMode(DrawMode.FILL);
         
         // Wheels
-        Cylinder w1 = new Cylinder(1 / SCALE, 1 / SCALE);
-        w1.setMaterial(WHEEL_MAT);
-        w1.setTranslateX(WX1);
-        w1.setTranslateY(WY1);
-        w1.setTranslateZ(WZ);
-        Cylinder w2 = new Cylinder(1 / SCALE, 1 / SCALE);
-        w2.setMaterial(WHEEL_MAT);
-        w2.setTranslateX(WX1);
-        w2.setTranslateY(WY2);
-        w2.setTranslateZ(WZ);
-        Cylinder w3 = new Cylinder(1 / SCALE, 1 / SCALE);
-        w3.setMaterial(WHEEL_MAT);
-        w3.setTranslateX(WX2);
-        w3.setTranslateY(WY1);
-        w3.setTranslateZ(WZ);
-        Cylinder w4 = new Cylinder(1 / SCALE, 1 / SCALE);
-        w4.setMaterial(WHEEL_MAT);
-        w4.setTranslateX(WX2);
-        w4.setTranslateY(WY2);
-        w4.setTranslateZ(WZ);
+        Cylinder w1 = getWheel(1 / SCALE, 1 / SCALE, WX1, WY1, WZ);
+        Cylinder w2 = getWheel(1 / SCALE, 1 / SCALE, WX1, WY2, WZ);
+        Cylinder w3 = getWheel(1 / SCALE, 1 / SCALE, WX2, WY1, WZ);
+        Cylinder w4 = getWheel(1 / SCALE, 1 / SCALE, WX2, WY2, WZ);
         
         breakLight1 = new Box(D, Math.abs(Y1 * 2 / 3) / SCALE, 0.5 / SCALE);
         breakLight1.setTranslateX(X1 / SCALE);

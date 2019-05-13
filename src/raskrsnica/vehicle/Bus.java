@@ -174,32 +174,14 @@ public class Bus extends Vehicle {
         MeshView meshView1 = new MeshView(mesh);
         PhongMaterial pm1 = new PhongMaterial();
         pm1.setDiffuseMap(CLS);
-        pm1.setSpecularPower(150);
-        //pm1.setSpecularPower(100);
         meshView1.setMaterial(pm1);
         meshView1.setDrawMode(DrawMode.FILL);
         
         // Wheels
-        Cylinder w1 = new Cylinder(1 / SCALE, 1 / SCALE);
-        w1.setMaterial(WHEEL_MAT);
-        w1.setTranslateX(WX1);
-        w1.setTranslateY(WY1);
-        w1.setTranslateZ(WZ);
-        Cylinder w2 = new Cylinder(1 / SCALE, 1 / SCALE);
-        w2.setMaterial(WHEEL_MAT);
-        w2.setTranslateX(WX1);
-        w2.setTranslateY(WY2);
-        w2.setTranslateZ(WZ);
-        Cylinder w3 = new Cylinder(1 / SCALE, 1 / SCALE);
-        w3.setMaterial(WHEEL_MAT);
-        w3.setTranslateX(WX2);
-        w3.setTranslateY(WY1);
-        w3.setTranslateZ(WZ);
-        Cylinder w4 = new Cylinder(1 / SCALE, 1 / SCALE);
-        w4.setMaterial(WHEEL_MAT);
-        w4.setTranslateX(WX2);
-        w4.setTranslateY(WY2);
-        w4.setTranslateZ(WZ);
+        Cylinder w1 = getWheel(1 / SCALE, 2 / SCALE, WX1, WY1, WZ);
+        Cylinder w2 = getWheel(1 / SCALE, 2 / SCALE, WX1, WY2, WZ);
+        Cylinder w3 = getWheel(1 / SCALE, 2 / SCALE, WX2, WY1, WZ);
+        Cylinder w4 = getWheel(1 / SCALE, 2 / SCALE, WX2, WY2, WZ);
         
         breakLight1 = new Box(D, 1 / SCALE, 1 / SCALE);
         breakLight1.setTranslateX(X1 / SCALE);
@@ -214,7 +196,6 @@ public class Bus extends Vehicle {
         breakLight2.setMaterial(ACC_MAT);
         
         getChildren().addAll(meshView, meshView1, w1, w2, w3, w4, breakLight1, breakLight2);
-        
     }
 
     @Override
@@ -224,7 +205,7 @@ public class Bus extends Vehicle {
     protected double getAccelRate() { return 0.001; }
 
     @Override
-    protected double getLen() { return 6; }
+    protected double getLen() { return 5; }
 
     private void addFace(ArrayList<Integer> facesChrList, int id1, int id2, int oneSidePoints) {
         Collections.addAll(facesChrList, id1, id2, id1 + oneSidePoints);

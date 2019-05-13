@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
+import javafx.scene.shape.Cylinder;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
 import raskrsnica.CameraManager;
@@ -169,6 +170,15 @@ public abstract class Vehicle extends Group {
         translate.setX(translate.getX() + spd * dx * dt);
         translate.setY(translate.getY() + spd * dy * dt);
         lastStateId = stateId;
+    }
+    
+    protected Cylinder getWheel(float r, float h, float x, float y, float z) {
+        Cylinder w = new Cylinder(r, h);
+        w.setMaterial(WHEEL_MAT);
+        w.setTranslateX(x);
+        w.setTranslateY(y);
+        w.setTranslateZ(z);
+        return w;
     }
     
     public double getDX() {
