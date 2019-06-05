@@ -52,7 +52,7 @@ public class Raskrsnica extends Application {
         root.getChildren().add(sorrounding);
         
         scene.setCamera(cameraManager.getTopDownCamera());
-        scene.setFill(Color.SILVER);
+        scene.setFill(Color.SKYBLUE);
         scene.setOnKeyPressed(e -> {
             switch(e.getCode()) {
                 case UP: upDown = true; break;
